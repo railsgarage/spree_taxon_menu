@@ -1,0 +1,7 @@
+<!-- insert_bottom "[data-hook='admin_inside_taxonomy_form']" -->
+
+<%= f.field_container :in_menu, class: ['form-group'] do %>
+  <%= f.label :in_menu, Spree.t(:in_menu) %>
+  <%= check_box :taxonomy, :in_menu, :class => 'form-control' %>
+  <%= error_message_on :taxonomy, :in_menu, :class => 'error-message' %>
+<% end %>

@@ -1,0 +1,7 @@
+<!-- insert_bottom "[data-hook='admin_inside_taxon_form'] .col-md-5" -->
+
+<%= f.field_container :in_menu, class: ['form-group'] do %>
+  <%= f.label :in_menu, Spree.t(:in_menu) %>
+  <%= check_box :taxon, :in_menu, :class => 'form-control' %>
+  <%= error_message_on :taxon, :in_menu, :class => 'error-message' %>
+<% end %>
