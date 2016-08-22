@@ -2,9 +2,9 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_taxon_menu'
-  s.version     = '3.0.0'
-  s.summary     = 'Add gem summary here'
-  s.description = 'Add (optional) gem description here'
+  s.version     = '3.0.3'
+  s.summary     = 'Spree Taxon Menu'
+  s.description = 'Taxon menu for Spree'
   s.required_ruby_version = '>= 2.0.0'
 
   s.author    = 'thogg4'
