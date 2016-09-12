@@ -5,21 +5,31 @@ Spree::FrontendHelper.module_eval do
       Spree::Taxonomy.where(in_menu: true).map do |taxonomy|
         root_taxon = taxonomy.root
         content_tag :li do
-          anchor = link_to(root_taxon.name, seo_url(root_taxon))
+          root_children = root_taxon.children.where(in_menu: true)
           dropdown = content_tag :ul do
-            root_taxon.children.where(in_menu: true).map do |taxon|
-              content_tag :li do 
-                anchor = link_to(taxon.name, seo_url(taxon))
+            root_children.map do |taxon|
+              content_tag :li do
+                children = taxon.children.where(in_menu: true)
                 dropdown = content_tag :ul do
-                  taxon.children.where(in_menu: true).map do |taxon|
+                  children.map do |taxon|
                     content_tag(:li, link_to(taxon.name, seo_url(taxon)))
                   end.join("\n").html_safe
                 end
-                taxon.children.where(in_menu: true).empty? ? anchor : anchor + dropdown
+                anchor = link_to seo_url(taxon) do
+                  name = taxon.name
+                  children.empty? ? name : (name + content_tag(:span, '', class: 'caret')).html_safe
+                end
+                anchor + dropdown
               end
             end.join("\n").html_safe
           end
+
+          anchor = link_to seo_url(root_taxon) do
+            name = root_taxon.name
+            root_children.empty? ? name : (name + content_tag(:span, '', class: 'caret')).html_safe
+          end
           anchor + dropdown
+
         end
       end.join("\n").html_safe
     end
